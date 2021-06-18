@@ -7,35 +7,45 @@ public class CatchEmAll {
 
     //You may set another exception in this field;
     static Exception exception = new FileNotFoundException();
-    static Exception exception_1 = new IOException();
-    static Exception exception_2 = new ArithmeticException();
-    static Exception exception_3 = new NumberFormatException();
 
     public static void riskyMethod() throws Exception {
         throw exception;
     }
 
     public static void main(String[] args) throws Exception {
-        try {
-            throw exception_1;
-        } catch(IOException ioException){
-            try{
+        try{
+            riskyMethod();
+        } catch(Exception e){
+            if(e instanceof FileNotFoundException){
+                throw new IllegalArgumentException("Resource is missing");
+            } else if((e instanceof ArithmeticException) || (e instanceof NumberFormatException)){
+                System.setErr(System.err);
+            } else if(e instanceof IOException){
                 throw new IllegalArgumentException("Resource error");
-            } catch(IllegalArgumentException illegalArgumentException){
-                try{
-                    riskyMethod();
-                } catch (FileNotFoundException fileNotFoundException){
-                    try{
-                        throw new IllegalArgumentException("Resource is missing");
-                    } catch (IllegalArgumentException illegalArgumentException1){
-                        try{
-                            throw new ArithmeticException("System.err");
-                        } catch (ArithmeticException arithmeticException){
-                            throw new NumberFormatException("System.err");
-                        }
-                    }
-                }
             }
         }
     }
 }
+
+// My first variant
+// try {
+//            throw exception_1;
+//        } catch(IOException ioException){
+//            try{
+//                throw new IllegalArgumentException("Resource error");
+//            } catch(IllegalArgumentException illegalArgumentException){
+//                try{
+//                    riskyMethod();
+//                } catch (FileNotFoundException fileNotFoundException){
+//                    try{
+//                        throw new IllegalArgumentException("Resource is missing");
+//                    } catch (IllegalArgumentException illegalArgumentException1){
+//                        try{
+//                            throw new ArithmeticException("System.err");
+//                        } catch (ArithmeticException arithmeticException){
+//                            throw new NumberFormatException("System.err");
+//                        }
+//                    }
+//                }
+//            }
+//        }
