@@ -29,6 +29,7 @@ public class CatchEmAll {
                         throw new ArithmeticException("System.err");
                     } catch(ArithmeticException arithmeticException){
                         throw  new NumberFormatException("System.err");
+
                     }
                 }
             }
