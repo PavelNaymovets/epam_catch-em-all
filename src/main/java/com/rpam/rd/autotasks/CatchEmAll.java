@@ -26,26 +26,3 @@ public class CatchEmAll {
         }
     }
 }
-
-// My first variant
-// try {
-//            throw exception_1;
-//        } catch(IOException ioException){
-//            try{
-//                throw new IllegalArgumentException("Resource error");
-//            } catch(IllegalArgumentException illegalArgumentException){
-//                try{
-//                    riskyMethod();
-//                } catch (FileNotFoundException fileNotFoundException){
-//                    try{
-//                        throw new IllegalArgumentException("Resource is missing");
-//                    } catch (IllegalArgumentException illegalArgumentException1){
-//                        try{
-//                            throw new ArithmeticException("System.err");
-//                        } catch (ArithmeticException arithmeticException){
-//                            throw new NumberFormatException("System.err");
-//                        }
-//                    }
-//                }
-//            }
-//        }
