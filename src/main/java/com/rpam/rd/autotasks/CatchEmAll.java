@@ -20,16 +20,19 @@ public class CatchEmAll {
             throw exception_1;
         } catch(IOException ioException){
             try{
-                riskyMethod();
-            } catch(FileNotFoundException fileNotFoundException){
+                throw new IllegalArgumentException("Resource error");
+            } catch(IllegalArgumentException illegalArgumentException){
                 try{
-                    throw new IllegalArgumentException("Resource is missing");
-                } catch (IllegalArgumentException illegalArgumentException){
+                    riskyMethod();
+                } catch (FileNotFoundException fileNotFoundException){
                     try{
-                        throw new ArithmeticException("System.err");
-                    } catch(ArithmeticException arithmeticException){
-                        throw  new NumberFormatException("System.err");
-
+                        throw new IllegalArgumentException("Resource is missing");
+                    } catch (IllegalArgumentException illegalArgumentException1){
+                        try{
+                            throw new ArithmeticException("System.err");
+                        } catch (ArithmeticException arithmeticException){
+                            throw new NumberFormatException("System.err");
+                        }
                     }
                 }
             }
